@@ -27,12 +27,12 @@ app.get("/", (req, res) => {
  * Local Server Information
  * Values from .env (environment) file
  *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+const PORT = process.env.PORT || 3000; // Usa 3000 si no hay PORT definido
+const HOST = process.env.HOST || "0.0.0.0"; // 0.0.0.0 funciona en Rende
 
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
-})
+app.listen(PORT, HOST, () => {
+  console.log(`App listening on ${HOST}:${PORT}`);
+});
