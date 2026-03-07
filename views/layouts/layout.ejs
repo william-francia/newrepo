@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head') %>
+        <title>
+            <%= title %>
+        </title>
+</head>
+
 <body>
-    <%- body %>
+    <%- include('../partials/header') %>
+        <%- include('../partials/navigation') %>
+
+            <%- body %> 
+
+                <%- include('../partials/footer') %>
 </body>
+
+</html>
