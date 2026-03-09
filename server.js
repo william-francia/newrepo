@@ -37,24 +37,6 @@ app.use(staticRoutes)
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" })
 })
-
-// Category pages
-app.get("/custom", (req, res) => {
-  res.render("custom", { title: "Custom" })
-})
-
-app.get("/sedan", (req, res) => {
-  res.render("sedan", { title: "Sedan" })
-})
-
-app.get("/suv", (req, res) => {
-  res.render("suv", { title: "SUV" })
-})
-
-app.get("/truck", (req, res) => {
-  res.render("truck", { title: "Truck" })
-})
-
 /* ***********************
  * Local Server Information
  *************************/
