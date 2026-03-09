@@ -34,9 +34,10 @@ const staticRoutes = require("./routes/static")
 app.use(staticRoutes)
 
 // Home Route
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home" })
-})
+// server.js
+app.get("/custom", (req, res) => {
+  res.render("custom", { title: "Custom Cars" });
+});
 
 /* ***********************
  * Local Server Information
