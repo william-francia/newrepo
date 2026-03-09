@@ -8,6 +8,7 @@
 const express = require("express")
 const env = require("dotenv").config()
 const app = express()
+app.use(express.static("public"))
 const static = require("./routes/static")
 const expressLayouts = require("express-ejs-layouts")
 app.set("view engine", "ejs")
