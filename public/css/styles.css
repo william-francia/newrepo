@@ -1,6 +1,232 @@
-/******* Change Box Model ***************/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+:root {
+  --primary-color: #383938;
+  --secondary-color: #dde2d8;
+  --primary1-color: #FFFCFF;
+  --optional-color: #9cadb4;
+
+  --heading-font: "Poetsen One", sans-serif;
+  --body-font: 'Open Sans', sans-serif;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+#navMotors {
+  width: 100%;
+  margin: 10px;
+}
+
+.ulMotorsNav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.ulMotorsNav li {
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  padding: 8px 16px;
+
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.ulMotorsNav li:hover {
+  transform: scale(1.1);
+  background-color: var(--optional-color);
+}
+
+.ulMotorsNav a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    font-size: 22px;
+    font-family: var(--body-font);
+    font-weight: 600;
+
+    color: var(--primary-color);
+    border-bottom: 2px solid #383938;
+}
+.siteName a {
+  text-decoration: none;
+  color: var(--primary-color);
+
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#tools a {
+  text-decoration: none;
+  color: white;
+
+  background-color: var(--primary-color);
+
+  padding: 8px 16px;
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+#tools a:hover {
+  background-color: var(--optional-color);
+  transform: scale(1.05);
+}
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.hero-info {
+  background: #ffffff88;
+  padding: 10px;
+  width: 180px;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #00a8e8;
+  color: white;
+  
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: var(--body-font);
+  
+  text-decoration: none;
+  border-radius: 10px;
+  
+  transition: all 0.3s ease;
+  margin: 15px;
+}
+
+
+.content {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+
+.reviews ul {
+  padding-left: 20px;
+  line-height: 1.8;
+  font-family: var(--body-font);
+}
+
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+
+.upgrade {
+  text-align: center;
+  background: var(--primary1-color);
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid var(--secondary-color);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.upgrade:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.upgrade img {
+  width: 80px;
+  padding: 10px;
+  background: var(--optional-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+
+.upgrade p {
+  font-weight: 600;
+  font-family: var(--body-font);
+}
+h2 { 
+  padding: 5px;
+}
+@media screen and (min-width: 750px) {
+
+  .content {
+    gap: 40px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+  .hero-info {
+    padding: 30px;
+    width: 250px;
+    top: 40px;
+    left: 20px;
+  }
+h2 {
+  padding: 25px;
+}
+  .reviews {
+    width: 48%;
+    float: left;
+  }
+  
+  .upgrades {
+    width: 48%;
+    float: right;
+  }
+
+  .upgrade-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
