@@ -1,10 +1,32 @@
 const express = require("express")
 const path = require("path")
 require("dotenv").config()
-
+const session = require("express-session")
+const pool = require("./database/")
 const app = express()
+const accountRoute = require("./routes/accountRoute")
+
 
 app.use(express.static(path.join(__dirname, "public")))
+app.use(express.urlencoded({ extended: true }))
+
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+app.use(require('connect-flash')())
+
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
 
 /* View Engine*/
 const expressLayouts = require("express-ejs-layouts")
@@ -19,7 +41,7 @@ app.set("layout", "layouts/layout")
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" })
 })
-
+app.use("/account", accountRoute)
 const staticRoutes = require("./routes/static")
 app.use(staticRoutes)
 
