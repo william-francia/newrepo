@@ -1,0 +1,42 @@
+<h1>
+    <%= title %>
+</h1>
+
+<%- messages() %>
+
+    <% if (errors) { %>
+        <ul class="notice">
+            <% errors.array().forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } %>
+
+            <form action="/inv/add-inventory" method="POST" class="form-container">
+                <label>Make:</label>
+                <input type="text" name="inv_make" value="<%= inv_make || '' %>" required>
+                <label>Model:</label>
+                <input type="text" name="inv_model" value="<%= inv_model || '' %>" required>
+                <label>Description:</label>
+                <textarea name="inv_description" required><%= inv_description || '' %></textarea>
+                <label>Image Path:</label>
+                <input type="text" name="inv_image" value="<%= inv_image || '' %>" required>
+                <label>Thumbnail Path:</label>
+                <input type="text" name="inv_thumbnail" value="<%= inv_thumbnail || '' %>" required>
+                <label>Price:</label>
+                <input type="number" name="inv_price" value="<%= inv_price || '' %>" required>
+                <label>Year:</label>
+                <input type="number" name="inv_year" value="<%= inv_year || '' %>" required>
+                <label>Miles:</label>
+                <input type="number" name="inv_miles" value="<%= inv_miles || '' %>" required>
+                <label>Color:</label>
+                <input type="text" name="inv_color" value="<%= inv_color || '' %>" required>
+
+                <label>Classification:</label>
+                <%- classificationList %>
+
+                    <button type="submit">Add Vehicle</button>
+
+            </form>

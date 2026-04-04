@@ -23,8 +23,11 @@ app.use(session({
 
 app.use(require('connect-flash')())
 
-app.use(function(req, res, next){
+const utilities = require("./utilities")
+
+app.use(async function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
+  res.locals.nav = await utilities.getNav()
   next()
 })
 
