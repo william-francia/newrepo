@@ -5,10 +5,14 @@ const session = require("express-session")
 const pool = require("./database/")
 const app = express()
 const accountRoute = require("./routes/accountRoute")
-
+const cookieParser = require("cookie-parser")
+const utilities = require("./utilities")
 
 app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cookieParser()) 
+app.use(utilities.checkJWTToken)
 
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -23,7 +27,7 @@ app.use(session({
 
 app.use(require('connect-flash')())
 
-const utilities = require("./utilities")
+
 
 app.use(async function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)

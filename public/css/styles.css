@@ -401,6 +401,164 @@ footer {
 
 
 
+/* 🔹 CONTENEDOR GENERAL */
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* 🔹 TITULOS */
+.form-container h1,
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 🔹 LABELS */
+.form-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* 🔹 INPUTS */
+.form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+
+.form-container input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* 🔹 BOTONES */
+.form-container button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* 🔹 MENSAJES */
+.notice {
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #e7f3ff;
+  border-left: 5px solid #007BFF;
+  color: #333;
+}
+
+/* 🔹 SEPARADOR */
+hr {
+  margin: 30px 0;
+}
+
+/* 🔹 TEXTO INFO PASSWORD */
+.form-container p {
+  font-size: 13px;
+  color: #666;
+}
+
+
+
+
+
+
+
+/* CONTENEDOR */
+.form-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM EN COLUMNA 🔥 */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* LABEL */
+label {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* BOTÓN */
+button {
+  margin-top: 20px;
+  padding: 12px;
+  background: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+
+
+
+
+
+
+#tools {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+#tools a {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+#tools a:first-child {
+  max-width: 100%;
+  font-size: 12px;
+}
+
+
+
+
+
 
 @media screen and (min-width: 750px) {
 
@@ -461,5 +619,7 @@ h2 {
   .vehicle-info {
     width: 50%;
   }
+        
+        
  
 }

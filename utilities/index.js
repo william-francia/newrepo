@@ -1,5 +1,7 @@
 const Util = {}
 const invModel = require("../models/inventory-model")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* Middleware for handling errors */
 Util.handleErrors = fn => (req, res, next) =>
@@ -72,5 +74,57 @@ Util.buildClassificationList = async function (classification_id = null) {
   classificationList += "</select>"
 
   return classificationList
+}
+
+Util.checkJWTToken = (req, res, next) => {
+
+  // 🔥 SIEMPRE definir primero
+  res.locals.loggedin = 0
+
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.JWT_SECRET,
+      function (err, accountData) {
+
+        if (err) {
+          req.flash("notice", "Please log in")
+          res.clearCookie("jwt")
+          return res.redirect("/account/login")
+        }
+
+        // ✅ SI el token es válido
+        res.locals.accountData = accountData
+        res.locals.loggedin = 1
+
+        next()
+      }
+    )
+  } else {
+    next()
+  }
+}
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in")
+    return res.redirect("/account/login")
+  }
+}
+/* ****************************************
+ *  Check Employee or Admin
+ * ************************************ */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  if (
+    res.locals.loggedin &&
+    (res.locals.accountData.account_type === "Employee" ||
+     res.locals.accountData.account_type === "Admin")
+  ) {
+    next()
+  } else {
+    req.flash("notice", "Access denied")
+    return res.redirect("/account/login")
+  }
 }
 module.exports = Util

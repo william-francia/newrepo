@@ -14,4 +14,33 @@ router.post(
   regValidate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
 )
+router.post("/login", utilities.handleErrors(accountController.accountLogin))
+router.get("/logout", accountController.logout)
+
+router.get(
+  "/",
+  utilities.checkLogin, //  PROTEGEr
+  accountController.buildAccount
+)
+
+// 🔹 Mostrar vista update
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateView)
+)
+
+// 🔹 Procesar update de datos
+router.post(
+  "/update",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// 🔥 Procesar cambio de password
+router.post(
+  "/update-password",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.updatePassword)
+)
 module.exports = router
