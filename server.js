@@ -81,6 +81,7 @@ app.use(async (err, req, res, next) => {
     nav: null
   })
 })
+app.set("trust proxy", 1)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)

@@ -55,7 +55,7 @@ async function accountLogin(req, res) {
   const token = jwtUtil.generateToken(payload)
 
   //  COOKIE
-  if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development") {
   res.cookie("jwt", token, {
     httpOnly: true,
     maxAge: 3600000
@@ -64,6 +64,7 @@ async function accountLogin(req, res) {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: true,
+    sameSite: "none", 
     maxAge: 3600000
   })
 }
