@@ -66,20 +66,12 @@ const PORT = process.env.PORT || 5500
 
 // ERROR HANDLER
 app.use(async (err, req, res, next) => {
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  console.error("🔥 ERROR REAL:", err)
 
-  let message
-  if (err.status == 404) {
-    message = err.message
-  } else {
-    message = 'Oh no! There was a crash. Maybe try a different route?'
-  }
-
-  res.render("errors/error", {
-    title: err.status || "Server Error",
-    message,
-    nav: null
-  })
+  res.status(err.status || 500).send(`
+    <h1>ERROR</h1>
+    <pre>${err.stack}</pre>
+  `)
 })
 app.set("trust proxy", 1)
 
