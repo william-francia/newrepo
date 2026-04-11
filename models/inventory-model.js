@@ -93,10 +93,89 @@ async function addInventory(
   }
 }
 
+
+async function checkExistingVehicle(inv_make, inv_model) {
+  try {
+    const sql = `
+      SELECT * FROM inventory 
+      WHERE inv_make = $1 AND inv_model = $2
+    `
+    const result = await pool.query(sql, [inv_make, inv_model])
+    return result.rows[0]
+  } catch (error) {
+    console.error("checkExistingVehicle error " + error)
+  }
+}
+async function addInventoryWithQuantity(
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,
+  classification_id,
+  quantity
+) {
+  try {
+    const sql = `
+      INSERT INTO inventory (
+        inv_make,
+        inv_model,
+        inv_description,
+        inv_image,
+        inv_thumbnail,
+        inv_price,
+        inv_year,
+        inv_miles,
+        inv_color,
+        classification_id,
+        quantity
+      )
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+      RETURNING *
+    `
+
+    return await pool.query(sql, [
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+      quantity
+    ])
+  } catch (error) {
+    return error.message
+  }
+}
+async function updateVehicleQuantity(inv_id, quantity) {
+  try {
+    const sql = `
+      UPDATE inventory
+      SET quantity = quantity + $1
+      WHERE inv_id = $2
+      RETURNING *
+    `
+    return await pool.query(sql, [quantity, inv_id])
+  } catch (error) {
+    console.error("updateVehicleQuantity error " + error)
+  }
+}
+
 module.exports = { 
   getInventoryById,
   getInventoryByClassificationId,
   addClassification,
   getClassifications,
-  addInventory
+  addInventory,
+  checkExistingVehicle,
+  addInventoryWithQuantity,
+  updateVehicleQuantity
 }

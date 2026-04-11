@@ -4,6 +4,7 @@ const router = new express.Router()
 const invController = require("../controllers/inventoryController")
 const utilities = require("../utilities")
 const invValidate = require("../utilities/inventory-validation")
+const auth = require("../utilities/authMiddleware")
 
 router.get(
   "/detail/:inv_id",
@@ -19,6 +20,7 @@ router.get(
 )
 router.get(
   "/",
+  auth.checkLogin,
   utilities.handleErrors(invController.buildManagement)
 )
 router.get(
@@ -45,5 +47,18 @@ router.post(
   invValidate.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
 )
+// BULK UPLOAD ROUTES
 
+
+router.get(
+  "/bulk-upload",
+  auth.checkLogin,
+  utilities.handleErrors(invController.showBulkUpload)
+)
+
+router.post(
+  "/bulk-upload",
+  auth.checkLogin,
+  utilities.handleErrors(invController.processBulkUpload)
+)
 module.exports = router

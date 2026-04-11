@@ -1,0 +1,35 @@
+
+
+    <h1>Bulk Inventory Upload</h1>
+
+    <% if (errors && errors.length> 0) { %>
+        <div class="error-box">
+            <ul>
+                <% errors.forEach(error=> { %>
+                    <li>
+                        <%= error %>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+        <% } %>
+    
+            <% if (successCount) { %>
+                <p><strong>
+                        <%= successCount %> items processed successfully
+                    </strong></p>
+                <% } %>
+
+            <form action="/inv/bulk-upload" method="post">
+
+                <label>Enter multiple vehicles:</label><br>
+
+                <textarea name="bulkData" rows="10" cols="60" placeholder="Toyota, Corolla, 15000, 5"
+                    required></textarea>
+
+                <br><br>
+
+                <button type="submit">Upload Inventory</button>
+
+            </form>
+

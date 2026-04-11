@@ -1,26 +1,33 @@
-<h1>My Account</h1>
+<h1 class="account-title">My Account</h1>
 
 <%- messages() %>
 
-    <% if (accountData.account_type==="Employee" || accountData.account_type==="Admin" ) { %>
-        <h2>Welcome <%= accountData.account_firstname %>
-        </h2>
-        <% } %>
+    <div class="account-container">
 
-    <!-- 🔹 Link para actualizar cuenta (TODOS lo ven) -->
-    <p>
-        <a href="/account/update/<%= accountData.account_id %>">
-            Update Account Information
-        </a>
-    </p>
+        <!-- USER INFO -->
+        <div class="card">
+            <h2>Welcome <%= accountData.account_firstname %>
+            </h2>
 
-    <!-- 🔥 SOLO Employee o Admin -->
-    <% if (accountData.account_type==="Employee" || accountData.account_type==="Admin" ) { %>
+            <a class="btn" href="/account/update/<%= accountData.account_id %>">
+                Update Account Information
+            </a>
+        </div>
 
-        <h3>Inventory Management</h3>
+        <% if (accountData.account_type==="Employee" || accountData.account_type==="Admin" ) { %>
 
-        <p>
-            <a href="/inv/">Manage Inventory</a>
-        </p>
+            <!-- INVENTORY -->
+            <div class="card">
+                <h3>Inventory Management</h3>
 
-        <% } %>
+                <div class="card-links">
+                    
+                    <a href="/inv/add-inventory" class="card-btn">Add New Vehicle</a>
+                    <a href="/inv/add-classification" class="card-btn">Add New Classification</a>
+                    <a href="/inv/bulk-upload" class="card-btn">Bulk Upload</a>
+                </div>
+            </div>
+
+            <% } %>
+
+    </div>

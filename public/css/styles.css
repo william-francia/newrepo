@@ -560,6 +560,66 @@ button:hover {
 
 
 
+
+
+
+
+.account-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.account-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h2,
+.card h3 {
+  margin-bottom: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #0077ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-btn {
+  display: block;
+  padding: 10px;
+  background: #00b894;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.card-btn:hover {
+  background: #019875;
+}
+
+
 @media screen and (min-width: 750px) {
 
 
