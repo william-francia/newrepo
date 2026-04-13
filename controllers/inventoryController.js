@@ -193,7 +193,7 @@ invController.processBulkUpload = async function (req, res) {
       return res.render("inventory/bulk-upload", {
         title: "Bulk Inventory Upload",
         nav,
-        errors: [{ msg: "Please enter data" }]
+        errors: ["Please enter data"]
       })
     }
 
@@ -209,30 +209,43 @@ for (let i = 0; i < lines.length; i++) {
 
   const parts = line.split(",")
 
-  if (parts.length !== 4) {
-    errors.push(`Line ${i + 1}: Invalid format`)
-    continue
-  }
-
   const inv_make = parts[0].trim()
   const inv_model = parts[1].trim()
   const inv_price = parseFloat(parts[2].trim())
   const quantity = parseInt(parts[3].trim())
 
-  if (!inv_make || !inv_model) {
-    errors.push(`Line ${i + 1}: Missing make or model`)
-    continue
-  }
+  let lineErrors = []
 
-  if (isNaN(inv_price) || inv_price <= 0) {
-    errors.push(`Line ${i + 1}: Invalid price`)
-    continue
-  }
+if (parts.length !== 4) {
+  lineErrors.push("Invalid format")
+}
 
-  if (isNaN(quantity) || quantity <= 0) {
-    errors.push(`Line ${i + 1}: Invalid quantity`)
-    continue
-  }
+if (!inv_make || !inv_model) {
+  lineErrors.push("Missing make or model")
+}
+
+if (!/^[a-zA-Z0-9\s]+$/.test(inv_make) || !/^[a-zA-Z0-9\s]+$/.test(inv_model)) {
+  lineErrors.push("Invalid characters in make or model")
+}
+
+if (isNaN(inv_price)) {
+  lineErrors.push("Price must be a number")
+} else if (inv_price < 1000) {
+  lineErrors.push("Price must be at least $1000")
+}
+
+if (isNaN(quantity)) {
+  lineErrors.push("Quantity must be a number")
+} else if (quantity <= 0) {
+  lineErrors.push("Quantity must be greater than 0")
+} else if (quantity > 1000) {
+  lineErrors.push("Quantity cannot exceed 1000")
+}
+
+if (lineErrors.length > 0) {
+  errors.push(`Line ${i + 1}: ${lineErrors.join(", ")}`)
+  continue
+}
 
   const inv_description = "Bulk added vehicle"
   const inv_image = "/images/vehicles/no-image.png"
@@ -292,7 +305,7 @@ res.render("inventory/management", {
     res.render("inventory/bulk-upload", {
       title: "Bulk Inventory Upload",
       nav,
-      errors: [{ msg: "Error processing data" }]
+      errors: ["Error processing data"]
     })
   }
 }
