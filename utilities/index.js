@@ -46,10 +46,24 @@ Util.buildVehicleDetail = function (data) {
         <p><strong>Mileage:</strong> ${Number(data.inv_miles).toLocaleString()} miles</p>
         <p><strong>Description:</strong> ${data.inv_description}</p>
         <p><strong>Color:</strong> ${data.inv_color}</p>
+
+        <p><strong>Stock available:</strong> ${data.quantity}</p>
+
+${
+  data.quantity > 0
+    ? `<p style="color: green; font-weight: bold;">
+         ✅ In Stock (${data.quantity})
+       </p>`
+    : `<p style="color: red; font-weight: bold;">
+         ❌ Out of Stock
+       </p>`
+}
       </div>
     </div>
   `
+  
 }
+
 
 
 Util.buildClassificationList = async function (classification_id = null) {
