@@ -296,4 +296,17 @@ res.render("inventory/management", {
     })
   }
 }
+
+invController.buildInventoryDashboard = async function (req, res) {
+  let nav = await utilities.getNav()
+
+  const data = await invModel.getAllInventory() || []
+
+  res.render("inventory/dashboard", {
+    title: "Inventory Dashboard",
+    nav,
+    data
+  })
+}
+
 module.exports = invController

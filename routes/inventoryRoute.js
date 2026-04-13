@@ -61,4 +61,9 @@ router.post(
   auth.checkLogin,
   utilities.handleErrors(invController.processBulkUpload)
 )
+router.get(
+  "/dashboard",
+  utilities.checkEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildInventoryDashboard)
+)
 module.exports = router

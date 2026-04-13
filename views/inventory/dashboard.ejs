@@ -1,0 +1,45 @@
+<h1>Inventory Dashboard</h1>
+
+<table class="inventory-table">
+    <thead>
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% data.forEach(vehicle=> { %>
+            <tr>
+                <td>
+                    <%= vehicle.inv_make %>
+                </td>
+                <td>
+                    <%= vehicle.inv_model %>
+                </td>
+                <td>$<%= Number(vehicle.inv_price).toLocaleString() %>
+                </td>
+
+                <td>
+                    <% if (vehicle.quantity> 3) { %>
+                        <span class="stock in-stock">
+                            <%= vehicle.quantity %> Available
+                        </span>
+
+                        <% } else if (vehicle.quantity> 0) { %>
+                            <span class="stock low-stock">
+                                ⚠ Only <%= vehicle.quantity %> left
+                            </span>
+
+                            <% } else { %>
+                                <span class="stock out-stock">
+                                     Out of Stock
+                                </span>
+                                <% } %>
+                </td>
+            </tr>
+            <% }) %>
+    </tbody>
+</table>

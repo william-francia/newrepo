@@ -168,6 +168,17 @@ async function updateVehicleQuantity(inv_id, quantity) {
     console.error("updateVehicleQuantity error " + error)
   }
 }
+async function getAllInventory() {
+  try {
+    const result = await pool.query(`
+      SELECT * FROM inventory
+      ORDER BY inv_make
+    `)
+    return result.rows
+  } catch (error) {
+    console.error("getAllInventory error " + error)
+  }
+}
 
 module.exports = { 
   getInventoryById,
@@ -177,5 +188,6 @@ module.exports = {
   addInventory,
   checkExistingVehicle,
   addInventoryWithQuantity,
-  updateVehicleQuantity
+  updateVehicleQuantity,
+  getAllInventory
 }
