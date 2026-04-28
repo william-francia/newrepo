@@ -1,47 +1,45 @@
-## Getting Started
+# Project Motors - Inventory Management System - William Francia
 
-This document is intended to get you started quickly in building a backend driven Node.js application complete with pages and content, backend logic and a PostgreSQL database for data storage.
-## Prerequisites
+## Live Demo
 
-The only prerequisite software required to have installed at this point is Git for version control and a code editor - we will use VS Code (VSC).
+https://projectmotors-app.onrender.com/
 
-## Package Management
+## About the Project
 
-The foundation of the project development software is Node. While functional, Node depends on "packages" to add functionality to accomplish common tasks. This requires a package manager. Three common managers are NPM (Node Package Manager), YARN, and PNPM. While all do the same thing, they do it slightly differently. We will use PNPM for two reasons: 1) All packages are stored on your computer only once and then symlinks (system links) are created from the package to the project as needed, 2) performance is increased meaning that when the project builds, it does so faster.
-You will need to either install or activate PNPM before using it. See https://pnpm.io/
+This project is an inventory management system where I focused on building a practical and realistic experience with user roles, data handling, and system structure.
 
-## Install the Project Dependencies
+Authentication is handled using **cookie-based sessions**, which means once you log in, your session stays active even if you close and reopen the browser.
 
-1. Open the downloaded project folder (where this file is located) in VS Code (VSC).
-2. Open the VSC terminal: Terminal > New Window.
-3. Run the following command in the terminal:
+The project is structured using the **MVC (Model–View–Controller)** pattern to keep the code organized and easier to maintain.
 
-    pnpm install
+## What You Can Do
 
-4. The first time it may take a few minutes, depending on the speed of your computer and the speed of your Internet connection. This command will instruct PNPM to read the package.json file and download and install the dependencies (packages) needed for the project. It will build a "node_modules" folder storing each dependency and its dependencies. It should also create a pnpm-lock.yaml file. This file should NEVER be altered by you. It is an internal file (think of it as an inventory) that PNPM uses to keep track of everything in the project.
+Using the admin account, you can explore most of the system features:
 
-## Start the Express Server
+* Edit your personal account information
+* Add new vehicles to the system
+* Create new classifications (these will automatically appear in the navigation)
+* Upload inventory in bulk using a TXT format
+* Access the Inventory Dashboard to view and manage stock
 
-With the packages installed you're ready to run the initial test.
-1. If the VSC terminal is still open use it. If it is closed, open it again using the same command as before.
-2. Type the following command, then press Enter:
+The **Inventory Dashboard updates dynamically**, so any changes made to the inventory are reflected immediately.
 
-    pnpm run dev
+## Test Account (Admin)
 
-3. If the command works, you should see the message "app listening on localhost:5500" in the console.
-4. Open the package.json file.
-5. Note the "Scripts" area? There is a line with the name of "dev", which tells the nodemon package to run the server.js file.
-6. This is the command you just ran.
-7. Open the server.js file.
-8. Near the bottom you'll see two variables "Port" and "Host". The values for the variables are stored in the .env file.
-9. These variables are used when the server starts on your local machine.
+* **Email:** [admin@test.com](mailto:admin@test.com)
+* **Password:** 123456Admin.admin
 
-## Move the demo file
+## How to Navigate
 
-When you installed Git and cloned the remote repository in week 1, you should have created a simple web page.
-1. Find and move that simple web page to the public folder. Be sure to note its name.
-## Test in a browser
+1. Log in with the admin account
+2. Go to **Account**
+3. From there, you can access:
 
-1. Go to http://localhost:5500 in a browser tab. Nothing should be visible as the server has not been setup to repond to that route.
-2. Add "/filename.html" to the end of the URL (replacing filename with the name of the file you moved to the public folder).
-3. You should see that page in the browser.
+   * Inventory Dashboard
+   * Bulk Upload
+   * Add Vehicle
+   * Manage Classifications
+
+## Notes
+
+This project includes database interaction, validation, and error handling to ensure the data is consistent and reliable.
